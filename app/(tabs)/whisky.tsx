@@ -1,8 +1,9 @@
 import ParallaxScrollView from "@/components/parallax-scroll-view";
+import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { Image } from "expo-image";
 import { useEffect, useState } from "react";
-import { FlatList, Platform, StyleSheet, Text, View } from "react-native";
+import { Platform, StyleSheet, View } from "react-native";
 
 type Distillery = {
   slug: string;
@@ -11,17 +12,23 @@ type Distillery = {
 };
 
 const API_BASE =
-  Platform.OS === "web" && __DEV__
-    ? "" // relative URL — Expo dev server handles it
-    : "https://whiskyhunter.net/api";
+  Platform.OS === "web"
+    ? "/api/distilleries_info/"
+    : "https://whiskyhunter.net/api/distilleries_info/";
 
 export default function WhiskyScreen() {
   const [distilleries, setDistilleries] = useState<Distillery[]>([]);
 
   useEffect(() => {
-    fetch(`${API_BASE}/api/distilleries_info/`)
+    fetch(API_BASE)
       .then((res) => res.json())
-      .then((data: Distillery[]) => setDistilleries(data))
+      .then((data: Distillery[]) => {
+        const unique = data.filter(
+          (item: Distillery, index: number, self: Distillery[]) =>
+            index === self.findIndex((d) => d.slug === item.slug),
+        );
+        setDistilleries(unique);
+      })
       .catch((err) => console.log(err));
   }, []);
 
@@ -37,55 +44,48 @@ export default function WhiskyScreen() {
       }
     >
       <ThemedView style={styles.container}>
-        <View>
-          <Text style={{ fontSize: 32, fontWeight: "bold" }}>
-            Whiskydestillerier
-          </Text>
+        <ThemedText type="title" style={styles.title}>
+          Whiskydestillerier
+        </ThemedText>
 
-          <FlatList
-            data={distilleries}
-            keyExtractor={(item) => item.slug}
-            renderItem={({ item }) => (
-              <View>
-                <Text> </Text>
-                <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-                  {item.name}
-                </Text>
-                <Text>{item.country}</Text>
-              </View>
-            )}
-          />
-        </View>
+        {distilleries.map((item) => (
+          <View key={item.slug} style={styles.card}>
+            <ThemedText style={styles.name}>{item.name}</ThemedText>
+            <ThemedText style={styles.country}>{item.country}</ThemedText>
+          </View>
+        ))}
       </ThemedView>
     </ParallaxScrollView>
   );
 }
+
 const styles = StyleSheet.create({
+  reactLogo: {
+    width: "100%",
+    height: "100%",
+    resizeMode: "cover",
+  },
   container: {
     flex: 1,
     paddingTop: 26,
-    paddingLeft: 42,
+    paddingHorizontal: 20,
   },
   title: {
-    fontSize: 28,
-    fontWeight: "bold",
-    marginBottom: 12,
-  },
-  list: {
-    gap: 10,
+    marginBottom: 16,
+    fontSize: 24,
   },
   card: {
-    padding: 12,
-    borderRadius: 10,
-    backgroundColor: "#eee",
+    paddingVertical: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: "#e8d5b0",
+    gap: 2,
   },
   name: {
     fontSize: 18,
     fontWeight: "600",
   },
-  reactLogo: {
-    width: "100%",
-    height: "100%",
-    resizeMode: "cover",
+  country: {
+    fontSize: 14,
+    color: "#9a7850",
   },
 });

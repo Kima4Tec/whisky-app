@@ -20,7 +20,10 @@ export default function TabTwoScreen() {
       }
     >
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title" style={{ fontFamily: Fonts.rounded }}>
+        <ThemedText
+          type="title"
+          style={{ fontFamily: Fonts.rounded, fontSize: 24 }}
+        >
           🥃 Klubber & Events
         </ThemedText>
       </ThemedView>
