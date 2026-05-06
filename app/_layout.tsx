@@ -28,7 +28,16 @@ export default function RootLayout() {
           name="reviews"
           options={{ presentation: "modal", title: "Home" }}
         />
+        <Stack.Screen
+          name="shops"
+          options={{ presentation: "modal", title: "Home" }}
+        />
+        <Stack.Screen
+          name="distilleries"
+          options={{ presentation: "modal", title: "Home" }}
+        />
       </Stack>
+
       <StatusBar style="auto" />
     </ThemeProvider>
   );

@@ -23,14 +23,7 @@ export default function HomeScreen() {
         <ThemedText type="title">Whisky!</ThemedText>
         <Wave />
       </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Whiskydestillerier</ThemedText>
-        <ThemedText>
-          Tryk på destillerier-knappen for at se en omfattende liste over
-          whiskydestillerier hentet fra
-          https://whiskyhunter.net/api/distilleries_info/{" "}
-        </ThemedText>
-      </ThemedView>
+
       <ThemedView style={styles.stepContainer}>
         <Link href="/reviews">
           <Link.Trigger>
@@ -71,6 +64,14 @@ export default function HomeScreen() {
         </Link>
         <ThemedText>
           {`Danske butikker på internettet, hvor du kan bestille whisky.`}
+        </ThemedText>
+      </ThemedView>
+      <ThemedView style={styles.stepContainer}>
+        <ThemedText type="subtitle">Whiskydestillerier</ThemedText>
+        <ThemedText>
+          Tryk på destillerier-knappen for at se en omfattende liste over
+          whiskydestillerier hentet fra
+          https://whiskyhunter.net/api/distilleries_info/{" "}
         </ThemedText>
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
