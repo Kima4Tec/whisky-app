@@ -128,11 +128,11 @@ const styles = StyleSheet.create({
     marginBottom: 28,
   },
   glassIcon: {
-    fontSize: 40,
+    fontSize: 24,
     marginBottom: 8,
   },
   title: {
-    fontSize: 28,
+    fontSize: 24,
     fontWeight: "700",
     color: "#3b2407",
     letterSpacing: 1.5,

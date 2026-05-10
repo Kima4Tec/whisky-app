@@ -217,8 +217,8 @@ const styles = StyleSheet.create({
   scroll: { padding: 20, paddingTop: 48, paddingBottom: 40 },
 
   header: { alignItems: "center", marginBottom: 24 },
-  headerIcon: { fontSize: 40, marginBottom: 8 },
-  title: { color: "#3b2407", letterSpacing: 1.5 },
+  headerIcon: { fontSize: 24, marginBottom: 8 },
+  title: { color: "#3b2407", letterSpacing: 1.5, fontSize: 24 },
   dividerRow: {
     flexDirection: "row",
     alignItems: "center",

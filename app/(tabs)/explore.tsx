@@ -13,7 +13,7 @@ export default function TabTwoScreen() {
       headerBackgroundColor={{ light: "#fdf6ec", dark: "#2d1f0a" }}
       headerImage={
         <Image
-          source={require("@/assets/images/homelogoOLD.png")}
+          source={require("@/assets/images/whiskyevent.png")}
           style={styles.reactLogo}
           contentFit="cover"
         />
@@ -33,7 +33,7 @@ export default function TabTwoScreen() {
         whisky-entusiaster i hele landet.
       </ThemedText>
       <ThemedText style={styles.sectionLabel}>
-        Dansk whiskyklubber og foreninger
+        Danske whiskyklubber og foreninger
       </ThemedText>
       {/* ── JYLLAND ── */}
       <ThemedText style={styles.regionLabel}>🔹 Jylland</ThemedText>
@@ -164,7 +164,6 @@ const styles = StyleSheet.create({
   sectionLabel: {
     fontSize: 18,
     fontWeight: "700",
-    color: "#3b2407",
     letterSpacing: 0.5,
     marginTop: 24,
     marginBottom: 4,

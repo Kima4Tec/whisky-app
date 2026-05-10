@@ -309,3 +309,37 @@ Jeg kan bygge en **færdig starter-struktur til din app**, fx:
 - `favorites system`
 - `settings + storage`
 - `sensor feature (cool effect)`
+
+Fra index.tsx med smarte funktioner:
+{/_ Reviews _/}
+<ThemedView style={styles.stepContainer}>
+<Link href="/reviews">
+<Link.Trigger>
+<ThemedText type="subtitle">Anmeldelser</ThemedText>
+</Link.Trigger>
+<Link.Preview />
+<Link.Menu>
+<Link.MenuAction
+title="Action"
+icon="cube"
+onPress={() => alert("Action pressed")}
+/>
+<Link.MenuAction
+title="Share"
+icon="square.and.arrow.up"
+onPress={() => alert("Share pressed")}
+/>
+<Link.Menu title="More" icon="ellipsis">
+<Link.MenuAction
+title="Delete"
+icon="trash"
+destructive
+onPress={() => alert("Delete pressed")}
+/>
+</Link.Menu>
+</Link.Menu>
+</Link>
+<ThemedText>
+{`Her kan du finde links til forskellige anmeldelser af whisky.`}
+</ThemedText>
+</ThemedView>
