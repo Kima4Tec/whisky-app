@@ -179,18 +179,33 @@ export default function MyReviewsScreen() {
   }
 
   return (
-    <ScrollView>
-      {/* Navigerer til siden hvor man kan oprette ny anmeldelse */}
-      <Pressable onPress={() => router.push("/addReview")}>...</Pressable>
+    <ScrollView
+      style={{ flex: 1, backgroundColor: isDark ? "#111" : "#f5f0eb" }}
+      contentContainerStyle={styles.container}
+    >
+      <Pressable
+        style={styles.addBtn}
+        onPress={() => router.push("/addReview")}
+      >
+        <Ionicons name="add" size={20} color="#fff" />
+        <ThemedText style={styles.addBtnText}>Skriv ny anmeldelse</ThemedText>
+      </Pressable>
 
-      {/* Hvis der ingen anmeldelser er */}
       {reviews.length === 0 && (
-        <View>
-          <ThemedText>Ingen anmeldelser endnu...</ThemedText>
+        <View style={styles.emptyState}>
+          <Ionicons
+            name="wine-outline"
+            size={48}
+            color="#b07d2e"
+            style={{ opacity: 0.5 }}
+          />
+          <ThemedText style={styles.emptyText}>
+            Ingen anmeldelser endnu.{"\n"}Tryk ovenfor for at tilføje din
+            første.
+          </ThemedText>
         </View>
       )}
 
-      {/* Mapper alle reviews ud som ReviewCard komponenter */}
       {reviews.map((r) => (
         <ReviewCard
           key={r.id}

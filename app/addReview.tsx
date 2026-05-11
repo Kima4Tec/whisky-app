@@ -16,7 +16,6 @@ import {
   View,
 } from "react-native";
 
-//Array med mulige scores fra 0 til 25, som bruges i ScoreField-komponenten til at generere prikkerne for point-slideren.
 const SCORES = Array.from({ length: 26 }, (_, i) => i); // 0–25
 
 type ScoreFieldProps = {
@@ -306,7 +305,7 @@ const styles = StyleSheet.create({
     gap: 2,
   },
   totalScore: {
-    fontSize: 32,
+    fontSize: 24,
     fontWeight: "800",
     color: "#b07d2e",
   },
