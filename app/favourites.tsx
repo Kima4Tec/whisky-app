@@ -29,8 +29,8 @@ interface Whisky {
   flag: string;
 }
 
-// ─── Repository Pattern (mål 11) ─────────────────────────────────────────────
-
+// ─── Repository Pattern ─────────────────────────────────────────────
+// En Promise i JavaScript er en måde at håndtere asynkrone operationer på (altså ting der tager tid og ikke sker med det samme).
 interface IWhiskyRepository {
   getAll(): Promise<Whisky[]>;
   save(whiskies: Whisky[]): Promise<void>;
@@ -39,6 +39,9 @@ interface IWhiskyRepository {
 }
 
 class WhiskyRepository implements IWhiskyRepository {
+  // Den plads i AsyncStorage hvor whisky-data gemmes.
+  // AsyncStorage er en lokal lagringsløsning i React Native,
+  // som bruges til at gemme data direkte på brugerens enhed.
   private readonly STORAGE_KEY = "whisky_votes";
 
   private readonly defaultWhiskies: Whisky[] = [
@@ -124,7 +127,7 @@ class WhiskyRepository implements IWhiskyRepository {
     },
   ];
 
-  // Asynkront hentning (Mål 13) og (Mål 3) - Simulerer en database eller ekstern API
+  // Asynkron hentning - hvis ikke der er gemte data, returneres default-listen og gemmes i AsyncStorage for fremtidig brug.
   async getAll(): Promise<Whisky[]> {
     try {
       const stored = await AsyncStorage.getItem(this.STORAGE_KEY);
@@ -136,11 +139,12 @@ class WhiskyRepository implements IWhiskyRepository {
     }
   }
 
-  // Gem lokalt på enheden (Mål 5)
+  // Gem lokalt på enheden via AsyncStorage
   async save(whiskies: Whisky[]): Promise<void> {
     await AsyncStorage.setItem(this.STORAGE_KEY, JSON.stringify(whiskies));
   }
 
+  // Opdaterer stemmer ved at finde den whisky der matches på ID, og enten øge eller mindske dens stemmeantal.
   async vote(id: string, whiskies: Whisky[]): Promise<Whisky[]> {
     const updated = whiskies.map((w) =>
       w.id === id ? { ...w, votes: w.votes + 1 } : w,
@@ -149,6 +153,7 @@ class WhiskyRepository implements IWhiskyRepository {
     return updated;
   }
 
+  // Fjerner en stemme ved at finde den whisky der matches på ID, og mindske dens stemmeantal, men aldrig under 0.
   async removeVote(id: string, whiskies: Whisky[]): Promise<Whisky[]> {
     const updated = whiskies.map((w) =>
       w.id === id ? { ...w, votes: Math.max(0, w.votes - 1) } : w,
@@ -159,11 +164,17 @@ class WhiskyRepository implements IWhiskyRepository {
 }
 
 // ─── Service hook (Mål 12 + 13) ──────────────────────────────────────────────
-
+// Et custom React hook, der håndterer al logik relateret til whisky-data og stemmeafgivning.
+// En hook i React (og React Native) er en funktion, der giver mulighed for at bruge state
+// og React-funktionalitet inde i funktionelle komponenter.
+// Det er en “kobling ind i React”, så komponenten kan huske data, reagere på ændringer og køre side effects.
 function useWhiskyService(repository: IWhiskyRepository) {
+  // React hooks (useState, useCallback) bruges til at håndtere state og
+  // at gemme funktioner i hukommelsen, så de ikke bliver genskabt unødvendigt ved hver render.
   const [whiskies, setWhiskies] = useState<Whisky[]>([]);
   const [loading, setLoading] = useState(true);
 
+  // useCallback bruges til at gemme funktioner, så de kun genskabes hvis deres afhængigheder ændrer sig.
   const fetchData = useCallback(async () => {
     setLoading(true);
     const data = await repository.getAll();
@@ -191,6 +202,7 @@ function useWhiskyService(repository: IWhiskyRepository) {
     [whiskies, repository],
   );
 
+  // Nulstil alle stemmer til 0, med en bekræftelsesdialog for at undgå utilsigtet nulstilling.
   const resetVotes = useCallback(async () => {
     Alert.alert(
       "Nulstil stemmer",
@@ -231,6 +243,10 @@ interface WhiskyCardProps {
   onRemove: (id: string) => void;
 }
 
+// WhiskyCard er en komponent der repræsenterer hver whisky i listen,
+// og viser dens information, antal stemmer, og + / − knapper til at stemme.
+// Den har også en lille "bounce" animation
+// Den er en “UI blok” for én whisky. Data ind via props (properties), den måde, en React-komponent får data udefra.
 function WhiskyCard({ item, index, onVote, onRemove }: WhiskyCardProps) {
   const scaleAnim = React.useRef(new Animated.Value(1)).current;
 
@@ -259,7 +275,7 @@ function WhiskyCard({ item, index, onVote, onRemove }: WhiskyCardProps) {
         <View
           style={[styles.cardAccent, { backgroundColor: item.accentColor }]}
         />
-
+        {/* Cards */}
         <View style={styles.cardContent}>
           {/* Header */}
           <View style={styles.cardHeader}>
@@ -349,6 +365,7 @@ export default function FavouritesScreen() {
   const { whiskies, loading, fetchData, castVote, removeVote, resetVotes } =
     useWhiskyService(repository);
 
+  // Kør fetchData() når komponenten loader – og igen hvis fetchData ændrer sig
   useEffect(() => {
     fetchData();
   }, [fetchData]);

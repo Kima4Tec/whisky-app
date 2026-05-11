@@ -48,6 +48,7 @@ export default function HomeScreen() {
       <View style={styles.dividerLine} />
 
       {/* Reviews */}
+      {/* pressable = klikbar container, som åbner modal */}
       <Link href="/reviews" asChild>
         <Pressable style={styles.card}>
           <ThemedView style={styles.row}>
@@ -117,6 +118,8 @@ export default function HomeScreen() {
   );
 }
 
+//Styles for HomeScreen-komponenten, der definerer layout og
+// udseende for forskellige elementer på skærmen
 const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: "row",

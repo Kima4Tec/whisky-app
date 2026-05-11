@@ -19,6 +19,10 @@ export default function RootLayout() {
   const colorScheme = useColorScheme();
   const router = useRouter();
 
+  // Stack.Screen kommer fra React Navigation i React Native, og det bruges
+  // til at definere de enkelte “skærme” i en stack-navigation
+  // (altså en navigation der fungerer som en stak sider)
+
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <Stack>
@@ -27,7 +31,7 @@ export default function RootLayout() {
         <Stack.Screen
           name="reviews"
           options={{
-            presentation: "modal",
+            presentation: "fullScreenModal",
             title: "Anmeldelser",
             headerLeft: () => (
               <Pressable onPress={() => router.back()} style={{ padding: 4 }}>
@@ -43,7 +47,7 @@ export default function RootLayout() {
         <Stack.Screen
           name="shops"
           options={{
-            presentation: "modal",
+            presentation: "fullScreenModal",
             title: "Whiskybutikker",
             headerLeft: () => (
               <Pressable onPress={() => router.back()} style={{ padding: 4 }}>
@@ -59,7 +63,7 @@ export default function RootLayout() {
         <Stack.Screen
           name="favourites"
           options={{
-            presentation: "modal",
+            presentation: "fullScreenModal",
             title: "Favoritter",
             headerLeft: () => (
               <Pressable onPress={() => router.back()} style={{ padding: 4 }}>
@@ -75,7 +79,7 @@ export default function RootLayout() {
         <Stack.Screen
           name="shake-theme"
           options={{
-            presentation: "modal",
+            presentation: "fullScreenModal",
             title: "Ryst dig til et tema",
             headerLeft: () => (
               <Pressable onPress={() => router.back()} style={{ padding: 4 }}>
@@ -91,7 +95,7 @@ export default function RootLayout() {
         <Stack.Screen
           name="myReviews"
           options={{
-            presentation: "modal",
+            presentation: "fullScreenModal",
             title: "Mine anmeldelser",
             headerLeft: () => (
               <Pressable onPress={() => router.back()} style={{ padding: 4 }}>
@@ -107,6 +111,7 @@ export default function RootLayout() {
         <Stack.Screen
           name="addReview"
           options={{
+            presentation: "fullScreenModal",
             title: "Ny anmeldelse",
             headerLeft: () => (
               <Pressable onPress={() => router.back()} style={{ padding: 4 }}>

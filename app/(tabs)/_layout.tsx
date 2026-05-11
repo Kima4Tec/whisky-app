@@ -1,12 +1,11 @@
-import { Tabs } from "expo-router";
-import React from "react";
-
 import { HapticTab } from "@/components/haptic-tab";
 import { Colors } from "@/constants/theme";
 import { useColorScheme } from "@/hooks/use-color-scheme";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
+import { Tabs } from "expo-router";
+import React from "react";
 
-// Definerer tab-navigationen med tre faner: Home, Explore og Destillerier
+// Tab-navigationen med tre faner: Home, Explore og Destillerier
 export default function TabLayout() {
   const colorScheme = useColorScheme();
 
@@ -32,7 +31,7 @@ export default function TabLayout() {
         }}
       />
 
-      {/* Udforsk-skærm */}
+      {/* Explore-skærm */}
       <Tabs.Screen
         name="explore"
         options={{

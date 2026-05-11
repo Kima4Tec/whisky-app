@@ -16,6 +16,7 @@ import {
   View,
 } from "react-native";
 
+//Array med mulige scores fra 0 til 25, som bruges i ScoreField-komponenten til at generere prikkerne for point-slideren.
 const SCORES = Array.from({ length: 26 }, (_, i) => i); // 0–25
 
 type ScoreFieldProps = {
@@ -24,7 +25,7 @@ type ScoreFieldProps = {
   onChange: (v: number) => void;
   isDark: boolean;
 };
-
+// Point slider component, der viser en række prikker som brugeren kan trykke på for at sætte score.
 function ScoreField({ label, value, onChange, isDark }: ScoreFieldProps) {
   return (
     <View style={styles.scoreBlock}>
@@ -35,6 +36,10 @@ function ScoreField({ label, value, onChange, isDark }: ScoreFieldProps) {
         </View>
       </View>
       <View style={styles.sliderRow}>
+        {/* looper gennem SCORES-arrayet og laver en Pressable for hver score (0–25). 
+        Når en prik trykkes, opdateres scoren via onChange-funktionen. 
+        Prikkernes farve ændres afhængigt af om de er under eller lig med den aktuelle score, 
+        og der bruges forskellige farver for højere scores. */}
         {SCORES.map((s) => (
           <Pressable
             key={s}
@@ -79,11 +84,14 @@ export default function AddReviewScreen() {
 
   const total = naese + smag + balance + afslutning;
 
+  // Data gemmes via AsyncStorage, der er en lokal lagringsløsning i React Native, som bruges til at gemme data direkte på brugerens enhed.
   async function handleSave() {
+    // Tjekker at brugeren har indtastet et navn
     if (!name.trim()) {
       Alert.alert("Manglende navn", "Angiv whiskyens navn for at gemme.");
       return;
     }
+    // Opretter review-objektet som skal gemmes i AsyncStorage. ID genereres ud fra timestamp, og dato gemmes i ISO-format.
     const review = {
       id: Date.now().toString(),
       name: name.trim(),
@@ -96,12 +104,18 @@ export default function AddReviewScreen() {
       date: new Date().toISOString(),
     };
     try {
+      // Henter eksisterende reviews fra AsyncStorage
       const existing = await AsyncStorage.getItem("whisky_reviews");
+      // Parser listen eller starter en ny tom liste
       const list = existing ? JSON.parse(existing) : [];
+      // Tilføjer den nye review i starten af listen (nyeste først)
       list.unshift(review);
+      // Gemmer den opdaterede liste tilbage i AsyncStorage
       await AsyncStorage.setItem("whisky_reviews", JSON.stringify(list));
+      // Går tilbage til forrige screen efter succes
       router.back();
     } catch {
+      // Viser fejl hvis noget går galt under gemning
       Alert.alert("Fejl", "Kunne ikke gemme anmeldelsen.");
     }
   }

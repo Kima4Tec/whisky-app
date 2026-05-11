@@ -1,12 +1,17 @@
-import { Image } from "expo-image";
-import { StyleSheet } from "react-native";
-
 import ParallaxScrollView from "@/components/parallax-scroll-view";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { Collapsible } from "@/components/ui/collapsible";
 import { Fonts } from "@/constants/theme";
+import { Image } from "expo-image";
+import { StyleSheet } from "react-native";
 
+// Explore-skærmen, der viser danske whiskyklubber og events
+// Denne skærm bruger en parallax-scrollview med et header-billede
+// og indeholder information om whiskyklubber og events i Danmark.
+// I React Native er en ParallaxScrollView en scroll-view med en
+// parallax-effekt — altså hvor baggrund eller header bevæger sig i en
+// anden hastighed end resten af indholdet under scrolling.
 export default function TabTwoScreen() {
   return (
     <ParallaxScrollView
@@ -19,6 +24,8 @@ export default function TabTwoScreen() {
         />
       }
     >
+      {/* Titel og introduktionstekst for Explore-skærmen wrapped i en
+          ThemedView og ThemedText for styling */}
       <ThemedView style={styles.titleContainer}>
         <ThemedText
           type="title"
@@ -27,7 +34,6 @@ export default function TabTwoScreen() {
           🥃 Klubber & Events
         </ThemedText>
       </ThemedView>
-
       <ThemedText>
         Udforsk danske whiskyklubber og tilbagevendende events for
         whisky-entusiaster i hele landet.
@@ -37,7 +43,6 @@ export default function TabTwoScreen() {
       </ThemedText>
       {/* ── JYLLAND ── */}
       <ThemedText style={styles.regionLabel}>🔹 Jylland</ThemedText>
-
       <Collapsible title="Whiskyklubben Angels Share">
         <ThemedText>
           Stiftet i{" "}
@@ -46,14 +51,12 @@ export default function TabTwoScreen() {
           medlem.
         </ThemedText>
       </Collapsible>
-
       <Collapsible title="Herning Whisky Laug">
         <ThemedText>
           Ca. <ThemedText type="defaultSemiBold">60 medlemmer</ThemedText>,
           eksisteret siden 1999. Arrangerer løbende smagninger for medlemmerne.
         </ThemedText>
       </Collapsible>
-
       <Collapsible title="Brabrand Whiskyklub Maltværket">
         <ThemedText>
           Stiftet i <ThemedText type="defaultSemiBold">2012</ThemedText> med 4–6
@@ -61,7 +64,6 @@ export default function TabTwoScreen() {
           entusiaster.
         </ThemedText>
       </Collapsible>
-
       <Collapsible title="The Scotch Malt Whisky Society">
         <ThemedText>
           International klub med base i{" "}
@@ -69,17 +71,14 @@ export default function TabTwoScreen() {
           giver adgang til eksklusive smagninger og særlige aftapninger.
         </ThemedText>
       </Collapsible>
-
       {/* ── FYN / SJÆLLAND ── */}
       <ThemedText style={styles.regionLabel}>🔹 Fyn & Sjælland</ThemedText>
-
       <Collapsible title="Nyborg Whisky Club">
         <ThemedText>
           Stiftet i <ThemedText type="defaultSemiBold">2004</ThemedText> med
           fokus på single malt. Åben for nye medlemmer.
         </ThemedText>
       </Collapsible>
-
       <Collapsible title="TAS – The Angel Share">
         <ThemedText>
           Lokal klub i{" "}
@@ -87,17 +86,14 @@ export default function TabTwoScreen() {
           år gammel. Hyggeligt fællesskab for lokale whiskyentusiaster.
         </ThemedText>
       </Collapsible>
-
       {/* ── ANDRE ── */}
       <ThemedText style={styles.regionLabel}>🔹 Andre & lokale</ThemedText>
-
       <Collapsible title="The Whisky Club (Felixvine)">
         <ThemedText>
           Butiksbaseret klub med månedlige smagninger. Mere kommerciel end en
           klassisk forening — god indgang for begyndere.
         </ThemedText>
       </Collapsible>
-
       <Collapsible title="Små lokale klubber & laug">
         <ThemedText>
           Der findes mange små, private klubber — ofte Facebook-baserede
@@ -105,10 +101,8 @@ export default function TabTwoScreen() {
           værd at søge efter lokalt.
         </ThemedText>
       </Collapsible>
-
       {/* ── EVENTS ── */}
       <ThemedText style={styles.sectionLabel}>Store whisky-events</ThemedText>
-
       <Collapsible title="🥃 Whisky Fair — Kolding">
         <ThemedText>
           Danmarks største whisky-event. Afholdes hvert år i{" "}
@@ -119,7 +113,6 @@ export default function TabTwoScreen() {
           producenter.
         </ThemedText>
       </Collapsible>
-
       <Collapsible title="🥃 Thy Whisky Festival — Nordjylland">
         <ThemedText>
           Afholdes i Nordjylland i det fri.{"\n"}
@@ -128,7 +121,6 @@ export default function TabTwoScreen() {
           Workshops, smagninger, bål og social hygge i naturen.
         </ThemedText>
       </Collapsible>
-
       <Collapsible title="🥃 Den Danske Rom og Whiskyfestival">
         <ThemedText>
           Stor festival med{" "}
@@ -141,7 +133,7 @@ export default function TabTwoScreen() {
     </ParallaxScrollView>
   );
 }
-
+//Styles for Explore-skærmen, herunder header-billedet og tekstformatering
 const styles = StyleSheet.create({
   reactLogo: {
     width: "100%",

@@ -139,18 +139,25 @@ function ReviewCard({
 
 export default function MyReviewsScreen() {
   const router = useRouter();
+
+  // Finder om brugeren er i dark/light mode
   const colorScheme = useColorScheme();
   const isDark = colorScheme === "dark";
+
+  // State til alle anmeldelser
   const [reviews, setReviews] = useState<Review[]>([]);
 
+  // useFocusEffect kører hver gang skærmen bliver fokuseret (kommer tilbage til den)
   useFocusEffect(
     useCallback(() => {
+      // Henter anmeldelser fra lokal storage når skærmen åbnes
       AsyncStorage.getItem("whisky_reviews").then((data) => {
         setReviews(data ? JSON.parse(data) : []);
       });
     }, []),
   );
 
+  // Sletter en anmeldelse baseret på id
   async function handleDelete(id: string) {
     Alert.alert("Slet anmeldelse", "Er du sikker?", [
       { text: "Annuller", style: "cancel" },
@@ -158,8 +165,13 @@ export default function MyReviewsScreen() {
         text: "Slet",
         style: "destructive",
         onPress: async () => {
+          // Filtrerer den valgte anmeldelse væk
           const updated = reviews.filter((r) => r.id !== id);
+
+          // Opdaterer state i UI
           setReviews(updated);
+
+          // Gemmer den opdaterede liste i AsyncStorage
           await AsyncStorage.setItem("whisky_reviews", JSON.stringify(updated));
         },
       },
@@ -167,33 +179,18 @@ export default function MyReviewsScreen() {
   }
 
   return (
-    <ScrollView
-      style={{ flex: 1, backgroundColor: isDark ? "#111" : "#f5f0eb" }}
-      contentContainerStyle={styles.container}
-    >
-      <Pressable
-        style={styles.addBtn}
-        onPress={() => router.push("/addReview")}
-      >
-        <Ionicons name="add" size={20} color="#fff" />
-        <ThemedText style={styles.addBtnText}>Skriv ny anmeldelse</ThemedText>
-      </Pressable>
+    <ScrollView>
+      {/* Navigerer til siden hvor man kan oprette ny anmeldelse */}
+      <Pressable onPress={() => router.push("/addReview")}>...</Pressable>
 
+      {/* Hvis der ingen anmeldelser er */}
       {reviews.length === 0 && (
-        <View style={styles.emptyState}>
-          <Ionicons
-            name="wine-outline"
-            size={48}
-            color="#b07d2e"
-            style={{ opacity: 0.5 }}
-          />
-          <ThemedText style={styles.emptyText}>
-            Ingen anmeldelser endnu.{"\n"}Tryk ovenfor for at tilføje din
-            første.
-          </ThemedText>
+        <View>
+          <ThemedText>Ingen anmeldelser endnu...</ThemedText>
         </View>
       )}
 
+      {/* Mapper alle reviews ud som ReviewCard komponenter */}
       {reviews.map((r) => (
         <ReviewCard
           key={r.id}

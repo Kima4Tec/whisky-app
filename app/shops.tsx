@@ -213,20 +213,43 @@ export default function ShopsScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#fdf6ec" },
-  scroll: { padding: 20, paddingTop: 48, paddingBottom: 40 },
+  container: {
+    flex: 1,
+    backgroundColor: "#fdf6ec",
+  },
+  scroll: {
+    padding: 20,
+    paddingTop: 48,
+    paddingBottom: 40,
+  },
 
-  header: { alignItems: "center", marginBottom: 24 },
+  header: {
+    alignItems: "center",
+    marginBottom: 24,
+  },
   headerIcon: { fontSize: 24, marginBottom: 8 },
-  title: { color: "#3b2407", letterSpacing: 1.5, fontSize: 24 },
+  title: {
+    color: "#3b2407",
+    letterSpacing: 1.5,
+    fontSize: 24,
+  },
   dividerRow: {
     flexDirection: "row",
     alignItems: "center",
     marginTop: 10,
     gap: 10,
   },
-  dividerLine: { flex: 1, height: 1, backgroundColor: "#b07d2e", opacity: 0.5 },
-  subtitle: { fontSize: 12, letterSpacing: 3, color: "#b07d2e" },
+  dividerLine: {
+    flex: 1,
+    height: 1,
+    backgroundColor: "#b07d2e",
+    opacity: 0.5,
+  },
+  subtitle: {
+    fontSize: 12,
+    letterSpacing: 3,
+    color: "#b07d2e",
+  },
 
   sectionHeader: {
     flexDirection: "row",
@@ -235,9 +258,15 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 10,
   },
-  sectionEmoji: { fontSize: 15 },
+  sectionEmoji: {
+    fontSize: 15,
+  },
   sectionLabel: { fontSize: 12, letterSpacing: 2.5, color: "#b07d2e" },
-  sectionLine: { flex: 1, height: 1, backgroundColor: "#e8d5b0" },
+  sectionLine: {
+    flex: 1,
+    height: 1,
+    backgroundColor: "#e8d5b0",
+  },
 
   card: {
     flexDirection: "row",
@@ -253,19 +282,53 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     elevation: 2,
   },
-  cardPressed: { opacity: 0.75 },
-  cardAccent: { width: 5 },
-  cardContent: { flex: 1, padding: 14, gap: 6 },
+  cardPressed: {
+    opacity: 0.75,
+  },
+  cardAccent: {
+    width: 5,
+  },
+  cardContent: {
+    flex: 1,
+    padding: 14,
+    gap: 6,
+  },
 
-  cardHeader: { flexDirection: "row", alignItems: "center", gap: 10 },
-  emoji: { fontSize: 28 },
-  emojiSm: { fontSize: 24 },
-  cardTitle: { fontSize: 18, fontWeight: "700", color: "#3b2407" },
-  cardTitleSm: { fontSize: 16, fontWeight: "700", color: "#3b2407" },
-  cardTagline: { fontSize: 13 },
-  cardDescription: { fontSize: 14, color: "#7a6040", lineHeight: 20 },
+  cardHeader: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+  },
+  emoji: {
+    fontSize: 28,
+  },
+  emojiSm: {
+    fontSize: 24,
+  },
+  cardTitle: {
+    fontSize: 18,
+    fontWeight: "700",
+    color: "#3b2407",
+  },
+  cardTitleSm: {
+    fontSize: 16,
+    fontWeight: "700",
+    color: "#3b2407",
+  },
+  cardTagline: {
+    fontSize: 13,
+  },
+  cardDescription: {
+    fontSize: 14,
+    color: "#7a6040",
+    lineHeight: 20,
+  },
 
-  tagsRow: { flexDirection: "row", gap: 6, marginTop: 2 },
+  tagsRow: {
+    flexDirection: "row",
+    gap: 6,
+    marginTop: 2,
+  },
   tag: {
     backgroundColor: "#fdf0db",
     borderRadius: 4,
@@ -274,10 +337,23 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     paddingVertical: 3,
   },
-  tagText: { fontSize: 12, color: "#9a7850" },
+  tagText: {
+    fontSize: 12,
+    color: "#9a7850",
+  },
 
-  cardLink: { fontSize: 13, letterSpacing: 0.5, marginTop: 2 },
+  cardLink: {
+    fontSize: 13,
+    letterSpacing: 0.5,
+    marginTop: 2,
+  },
 
-  backLink: { alignSelf: "center", paddingVertical: 16 },
-  backText: { fontSize: 15, letterSpacing: 0.5 },
+  backLink: {
+    alignSelf: "center",
+    paddingVertical: 16,
+  },
+  backText: {
+    fontSize: 15,
+    letterSpacing: 0.5,
+  },
 });
