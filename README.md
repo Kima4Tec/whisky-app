@@ -1,8 +1,32 @@
-# Whisky-app
+# Whisky-app noter med screenshots og struktur
 
 ## Screenshots
 
-![alt text](image.png)
+<img src="image.png" width="200" />
+
+<img src="IMG_9076.PNG" width="200" />
+
+<img src="IMG_9077.PNG" width="200" />
+
+<img src="IMG_9078.PNG" width="200" />
+
+<img src="IMG_9080.PNG" width="200" />
+
+<img src="IMG_9081.PNG" width="200" />
+
+<img src="IMG_9082.PNG" width="200" />
+
+<img src="IMG_9089.PNG" width="200" />
+
+<img src="IMG_9090.PNG" width="200" />
+
+<img src="IMG_9083.PNG" width="200" />
+
+<img src="IMG_9084.PNG" width="200" />
+
+<img src="IMG_9087.PNG" width="200" />
+
+<img src="IMG_9088.PNG" width="200" />
 
 ## Struktur
 
