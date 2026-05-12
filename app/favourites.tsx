@@ -1,5 +1,6 @@
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
+import { Ionicons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Link } from "expo-router";
 import React, { useCallback, useEffect, useState } from "react";
@@ -319,14 +320,11 @@ function WhiskyCard({ item, index, onVote, onRemove }: WhiskyCardProps) {
               onPress={() => bounce(() => onRemove(item.id))}
               disabled={item.votes === 0}
             >
-              <ThemedText
-                style={[
-                  styles.controlBtnText,
-                  item.votes === 0 && styles.controlBtnTextDisabled,
-                ]}
-              >
-                −
-              </ThemedText>
+              <Ionicons
+                name="remove"
+                size={24}
+                color={item.votes === 0 ? "#c8bca8" : "#7a6040"}
+              />
             </TouchableOpacity>
 
             <ThemedText
@@ -345,7 +343,7 @@ function WhiskyCard({ item, index, onVote, onRemove }: WhiskyCardProps) {
               ]}
               onPress={() => bounce(() => onVote(item.id))}
             >
-              <ThemedText style={styles.controlBtnTextActive}>+</ThemedText>
+              <Ionicons name="add" size={24} color="#ffffff" />
             </TouchableOpacity>
           </View>
         </View>
@@ -625,6 +623,8 @@ const styles = StyleSheet.create({
     borderWidth: 1.5,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "#7a6040",
+    borderColor: "#e8d5b0",
   },
   controlBtnMinus: {
     backgroundColor: "#fdf6ec",
